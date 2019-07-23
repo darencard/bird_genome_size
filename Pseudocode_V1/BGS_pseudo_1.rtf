@@ -14,12 +14,12 @@ START\
 \
 READ<ASSEMBLY> metadata\
 \
-FOR sample_acession !=null\
+FOR sample_acession != null\
 \
 wget 
 \f1\fs26 \cf2 \cb3 \expnd0\expndtw0\kerning0
-\outl0\strokewidth0 \strokec2 http://www.ebi.ac.uk/ena/data/view/
-\f0\fs24 \cf0 \cb1 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 <sample_acession>&display=xml\
+http://www.ebi.ac.uk/ena/data/view/
+\f0\fs24 \cf0 \cb1 \kerning1\expnd0\expndtw0 <sample_acession>&display=xml\
 \
 grep nominal_length\
 \
@@ -27,6 +27,29 @@ grep read_count\
 \
 IF variable nominal_length < 1000 AND read_count > 20000\
 THEN wget http://www.ebi.ac.uk/ena/data.veiw/<run_acession>&display=xml\
+\
+\
+### Daren\'92s version ###\
+\
+Inputs:\
+NCBI/EBI taxon ID number ( = 8783 for Paleognaths)\
+\
+1. Retrieve list of all target taxa genome assemblies using taxon ID ( = all Paleognath genome metadata)\
+2. For each assembly:\
+	a. Retrieve associated sample accession (sometimes called BioSamples)\
+	b. Use BioSample to retrieve run accession metadata tables\
+	c. Filter runs based on fragment length (called \'93nominal_length\'94) - keeping short-insert libraries only\
+	d. For each \'93passing\'94 run:\
+		I. Generate species-specific storage location path\
+		II. Download the paired read data to the generated storage location path\
+\
+\
+\
+\
+\
+\
+\
+\
 \
 \
 }
