@@ -47,11 +47,11 @@ NCBI/EBI taxon ID number ( = 8783 for Paleognaths)
 ### Cid V2###
 
 
-“1. Retrieve list of all target taxa with genome assemblies using taxon ID ( = all Paleognath genome metadata)
+1. Retrieve list of all target taxa with genome assemblies using taxon ID ( = all Paleognath genome metadata)
 2. For each species
-	A. Generate species-specific storage location path
-	B. Retrieve list of all assemblies 
-	C, For each assembly:
+    A. Generate species-specific storage location path
+    B. Retrieve list of all assemblies 
+    C. For each assembly:
 		a. Retrieve associated sample accession (sometimes called BioSamples)
 		b. Generate BioSample specific folder in species-specific folder
 		c. Use BioSample to retrieve run accession metadata tables
