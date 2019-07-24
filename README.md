@@ -51,24 +51,27 @@ NCBI/EBI taxon ID number ( = 8783 for Paleognaths)
 
 ### Cid V2
 
-
 1. Retrieve list of all target taxa with genome assemblies using taxon ID ( = all Paleognath genome metadata)
 2. For each species
     * Generate species-specific storage location path
-    * Retrieve list of all assemblies 
-    * For each assembly:
+    * Retrieve list of all assemblies
+    * Determine best/most recent assembly
+    * For each assembly
         * Retrieve associated sample accession (sometimes called BioSamples)
-        * Generate BioSample specific folder in species-specific folder
         * Use BioSample to retrieve run accession metadata tables
         * Download to species-specific folder
-        * Filter runs based on fragment length (called “nominal_length”) - keeping short-insert libraries only
-        * For each “passing” run:
-            * Download the paired read data to the generated storage location path
-        * For each “failing” run:
-            * Delete run_accession data from metadata table”
+        * Open run table
+        * calculate total coverage and ensure it is above minimum coverage threshold
+        * add include/exclude column for population
+        * for each record in run table
+           * if insert length (called “nominal_length”) <= TBD - keeping short-insert libraries only
+               * Download the paired read data to the generated storage location path by proportionally subsampling all short-insert libraries
+               * Mark run_accession data from metadata table as included
+           * else (insert length > TBD - long-insert libraries that we do not want)
+               * Mark run_accession data from metadata table as excluded
 
 #### Probable Biases/concerns
 
-1. Short read lengths
+1. Short fragment lengths
 2. Inconsistent sampling of target species
 3. Potential issue with relative accuracy of different sequencing methods
