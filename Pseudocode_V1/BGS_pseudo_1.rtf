@@ -43,6 +43,29 @@ NCBI/EBI taxon ID number ( = 8783 for Paleognaths)\
 		I. Generate species-specific storage location path\
 		II. Download the paired read data to the generated storage location path\
 \
+### Cid V2###\
+\
+\
+\'931. Retrieve list of all target taxa with genome assemblies using taxon ID ( = all Paleognath genome metadata)\
+2. For each species\
+	A. Generate species-specific storage location path\
+	B. Retrieve list of all assemblies \
+	C, For each assembly:\
+		a. Retrieve associated sample accession (sometimes called BioSamples)\
+		b. Generate BioSample specific folder in species-specific folder\
+		c. Use BioSample to retrieve run accession metadata tables\
+		d. Download to species-specific folder\
+		e. Filter runs based on fragment length (called \'93nominal_length\'94) - keeping short-insert libraries only\
+		f. For each \'93passing\'94 run:\
+			I. Download the paired read data to the generated storage location path\
+		g. For each \'93failing\'94 run:\
+			I. Delete run_accession data from metadata table\'94\
+\
+**Probable Biases/concerns**\
+\
+1. Short read lengths\
+2. Inconsistent sampling of target species\
+3. Potential issue with relative accuracy of different sequencing methods\
 \
 \
 \
