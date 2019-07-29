@@ -52,13 +52,16 @@ NCBI/EBI taxon ID number ( = 8783 for Paleognaths)
 ### Cid V2
 
 1. Retrieve list of all target taxa with genome assemblies using taxon ID ( = all Paleognath genome metadata)
+    *https://www.ebi.ac.uk/ena/data/view/Taxon:<taxon_id>&portal=assembly&subtree=true&download=text
 2. For each species
     * Generate species-specific storage location path
     * Retrieve list of all assemblies
+        *https://www.ebi.ac.uk/ena/data/view/<species_GCA>&download=txt
     * Determine best/most recent assembly
     * For each assembly
         * Retrieve associated sample accession (sometimes called BioSamples)
         * Use BioSample to retrieve run accession metadata tables
+            *https://www.ebi.ac.uk/ena/data/warehouse/filereport?accession=<sample_ref>&result=read_run&fields=study_accession,secondary_study_accession,sample_accession,secondary_sample_accession,experiment_accession,run_accession,submission_accession,tax_id,scientific_name,instrument_platform,instrument_model,library_name,nominal_length,library_layout,library_strategy,library_source,library_selection,read_count,base_count,center_name,first_public,last_updated,experiment_title,study_title,study_alias,experiment_alias,run_alias,fastq_bytes,fastq_md5,fastq_ftp,fastq_aspera,fastq_galaxy,submitted_bytes,submitted_md5,submitted_ftp,submitted_aspera,submitted_galaxy,submitted_format,sra_bytes,sra_md5,sra_ftp,sra_aspera,sra_galaxy,cram_index_ftp,cram_index_aspera,cram_index_galaxy,sample_alias,broker_name,sample_title,nominal_sdev,first_created&download=txt
         * Download to species-specific folder
         * Open run table
         * calculate total coverage and ensure it is above minimum coverage threshold
@@ -69,6 +72,8 @@ NCBI/EBI taxon ID number ( = 8783 for Paleognaths)
                * Mark run_accession data from metadata table as included
            * else (insert length > TBD - long-insert libraries that we do not want)
                * Mark run_accession data from metadata table as excluded
+    *Download assembly metadata.
+        *https://www.ebi.ac.uk/ena/data/view/<assembly_id>&download=txt
 
 #### Probable Biases/concerns
 
